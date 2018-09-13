@@ -12,14 +12,13 @@ REQUIRED_CONFIG_KEYS = [
     'group_id',
     'bootstrap_servers',
     'topic',
-    'schema',
-    'primary_keys',
+    # 'schema',
+    # 'primary_keys',
     'message_serialization'
 ]
 
 def dump_catalog(all_streams):
     json.dump({'streams' : all_streams}, sys.stdout, indent=2)
-
 
 def do_discovery(config):
     try:
@@ -47,6 +46,7 @@ def main_impl():
 
     kafka_config = {'topic' : args.config['topic'],
                     'group_id' : args.config['group_id'],
+                    'reject_topic': args.config.get('reject_topic'),
                     'bootstrap_servers': args.config['bootstrap_servers'].split(',')}
 
     if args.discover:

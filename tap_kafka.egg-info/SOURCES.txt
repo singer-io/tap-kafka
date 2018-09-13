@@ -1,3 +1,6 @@
+tap_kafka/__init__.py
+tap_kafka/common.py
+tap_kafka/sync.py
 tap_kafka.egg-info/PKG-INFO
 tap_kafka.egg-info/SOURCES.txt
 tap_kafka.egg-info/dependency_links.txt
