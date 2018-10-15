@@ -1,4 +1,0 @@
-
-          [console_scripts]
-          tap-kafka=tap_kafka:main
-      
