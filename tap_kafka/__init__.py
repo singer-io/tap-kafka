@@ -25,7 +25,7 @@ def do_discovery(config):
         consumer = KafkaConsumer(config['topic'],
                                  group_id=config['group_id'],
                                  enable_auto_commit=False,
-                                 consumer_timeout_ms=10000,
+                                 consumer_timeout_ms=config.get('consumer_timeout_ms', 10000),
                                  #value_deserializer=lambda m: json.loads(m.decode('ascii'))
                                  bootstrap_servers=config['bootstrap_servers'].split(','))
     except Exception as ex:
