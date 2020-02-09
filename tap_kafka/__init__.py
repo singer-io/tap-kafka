@@ -22,10 +22,16 @@ def dump_catalog(all_streams):
 
 def do_discovery(config):
     try:
+        # Check if security protocol has been passed to config
+        security_protocol = config.get('security_protocol')
+        if security_protocol is None:
+            security_protocol = "PLAINTEXT"
+
         consumer = KafkaConsumer(config['topic'],
                                  group_id=config['group_id'],
                                  enable_auto_commit=False,
                                  consumer_timeout_ms=config.get('consumer_timeout_ms', 10000),
+                                 security_protocol=security_protocol,
                                  #value_deserializer=lambda m: json.loads(m.decode('ascii'))
                                  bootstrap_servers=config['bootstrap_servers'].split(','))
     except Exception as ex:
