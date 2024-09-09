@@ -43,7 +43,13 @@ def validate_record(schema, message):
 
 
 def send_reject_message(kafka_config, message, reject_reason):
+    # Check if security protocol has been passed to config
+    security_protocol = config.get('security_protocol')
+    if security_protocol is None:
+        security_protocol = "PLAINTEXT"
+
     producer = KafkaProducer(bootstrap_servers=kafka_config['bootstrap_servers'],
+                             security_protocol=security_protocol,
                              value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
 
@@ -57,8 +63,14 @@ def send_reject_message(kafka_config, message, reject_reason):
         raise ex
 
 def sync_stream(kafka_config, stream, state):
+    # Check if security protocol has been passed to config
+    security_protocol = kafka_config.get('security_protocol')
+    if security_protocol is None:
+        security_protocol = "PLAINTEXT"
+
     consumer = KafkaConsumer(kafka_config['topic'],
                              group_id=kafka_config['group_id'],
+                             security_protocol=security_protocol,
                              enable_auto_commit=False,
                              consumer_timeout_ms=kafka_config.get('consumer_timeout_ms', 10000),
                              auto_offset_reset='earliest',

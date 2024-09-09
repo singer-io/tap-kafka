@@ -106,3 +106,6 @@ ENV/
 config.json
 state.json
 properties.json
+
+# VS Code
+.vscode/
