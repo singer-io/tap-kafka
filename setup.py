@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='tap-kafka',
-      version='0.0.1',
+      version='0.0.2',
       description='Singer.io tap for extracting data from kafka',
       author='Stitch',
       url='https://singer.io',
@@ -12,7 +12,7 @@ setup(name='tap-kafka',
 	  'python-snappy',
           'kafka-python',
           'singer-python==5.2.0',
-          'requests==2.20.0',
+          'requests==2.31.0',
 	  'psycopg2==2.7.4',
 	  'strict-rfc3339==0.7',
 	  'nose==1.3.7',
